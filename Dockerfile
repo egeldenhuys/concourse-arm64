@@ -3,7 +3,7 @@ ARG golang_concourse_builder_image
 
 #
 # Build the UI artefacts
-FROM ubuntu:20.04 AS yarn-builder
+FROM docker.io/ubuntu:20.04 AS yarn-builder
 
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
