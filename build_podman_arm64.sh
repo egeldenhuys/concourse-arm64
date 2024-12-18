@@ -41,6 +41,7 @@ buildConcourseResourceDocker() {
 
   podman build \
     --build-arg ${_build_arg_type}_resource_version=${_version} \
+    --build-arg  golang_resource_builder_image=${GOLANG_RESOURCE_BUILDER_IMAGE} \
     --tag $DOCKER_REGISTRY_BASE/concourse-${_type}-resource:${_version} \
     . \
     -f resource-types/Dockerfile-${_type}-resource

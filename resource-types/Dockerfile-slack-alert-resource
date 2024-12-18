@@ -1,4 +1,5 @@
-FROM golang:1.16.2-alpine3.13 as builder
+ARG golang_resource_builder_image="docker.io/golang:1.16.2-alpine3.13"
+FROM ${golang_resource_builder_image} as builder
 
 ARG slack_alert_resource_version
 
