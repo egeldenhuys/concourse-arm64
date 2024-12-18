@@ -68,6 +68,9 @@ RUN apk add bash
 ENV CGO_ENABLED=0
 RUN ./build_linux.sh
 
+WORKDIR /go/concourse/fly
+RUN go build
+RUN tar -cvzf fly-linux-arm64.tgz fly
 
 #
 # Generate the final image
@@ -82,6 +85,7 @@ COPY --from=go-builder /go/concourse/concourse /usr/local/concourse/bin/
 COPY --from=go-builder /go/guardian/gdn /usr/local/concourse/bin/
 COPY --from=go-builder /go/guardian/cmd/init/init /usr/local/concourse/bin/
 COPY --from=go-builder /go/plugins/bin/* /usr/local/concourse/bin/
+COPY --from=go-builder /go/concourse/fly/fly-linux-arm64.tgz /usr/local/concourse/fly-assets/fly-linux-arm64.tgz
 
 
 # Add resource-types
